@@ -29,6 +29,23 @@
 	<h6>Comments</h6>
 	<c:forEach items="${review.comments}" var="comment">
 		<p>${comment}</p>
+		<c:choose>
+			<c:when test="${ comment.commentCreator.id == user.id }">
+				<a href="/comments/${ comment.id }/edit">Edit</a> |
+				<form class="delete-form" action="/comments/${ comment.id }" method="post">
+					<input type="hidden" name="_method" value="delete" />
+					<button>Delete</button>
+				</form>
+			</c:when>
+			// do we want user to be able to comment on their own comment?
+<%-- 			<c:otherwise>
+				<c:choose>
+					<c:otherwise>
+						<a href="/comments/${ comment.id }/comment/create">Add Comment</a>								
+					</c:otherwise>	
+				</c:choose>
+			</c:otherwise> --%>
+		</c:choose>
 	</c:forEach>
 </div>
 </body>
