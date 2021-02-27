@@ -37,7 +37,7 @@
 					<button>Delete</button>
 				</form>
 			</c:when>
-			// do we want user to be able to comment on their own comment?
+<%-- do we want user to be able to comment on their own comment? --%>
 <%-- 			<c:otherwise>
 				<c:choose>
 					<c:otherwise>
