@@ -25,8 +25,12 @@ public class Comment {
 	private Date updatedAt;
 
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private Review commentCreator;
+
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="review_id")
-	private Review reviewComment;
+	private Review reviewComments;
 
 	public Comment() {
 	}
@@ -63,13 +67,19 @@ public class Comment {
 		this.updatedAt = updatedAt;
 	}
 
-	public Review getReviewComment() {
-		return reviewComment;
+	public Review getReviewComments() {
+		return reviewComments;
 	}
 
-	public void setReviewComment(Review reviewComment) {
-		this.reviewComment = reviewComment;
+	public void setReviewComments(Review reviewComments) {
+		this.reviewComments = reviewComments;
 	}
 	
-	
+	public Review getCommentCreator() {
+		return commentCreator;
+	}
+
+	public void setCommentCreator(Review commentCreator) {
+		this.commentCreator = commentCreator;
+	}
 }

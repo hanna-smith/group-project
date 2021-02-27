@@ -27,7 +27,7 @@
 	<h5>Review</h5>
 	<p>${business.review}</p>
 	<h6>Comments</h6>
-	<c:forEach items="${review.comments}" var="comment">
+	<c:forEach items="${reviewComments.comments}" var="comment">
 		<p>${comment}</p>
 		<c:choose>
 			<c:when test="${ comment.commentCreator.id == user.id }">
