@@ -26,7 +26,13 @@
 	<h3><a href="/business/${business.id}">${business.name}</a></h3>
 	<h5>Review</h5>
 	<p>${business.review}</p>
-	<p><a href="/new">Add Comment</a></p>
+	<form action="/new">
+  		<div class="form-group">
+    		<label for="comment">Add Comment:</label>
+    		<input type="comment" class="form-control" placeholder="Type comments here" id="comment">
+  		</div>
+  		<button type="submit" class="btn btn-primary">Submit</button>
+  		</form>
 	<h6>Comments</h6>
 	<c:forEach items="${reviewComments.comments}" var="comment">
 		<p>${comment}</p>
