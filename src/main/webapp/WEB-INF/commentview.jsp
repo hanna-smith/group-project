@@ -31,8 +31,8 @@
 		<p>${comment}</p>
 		<c:choose>
 			<c:when test="${ comment.commentCreator.id == user.id }">
-				<a href="/comments/${ comment.id }/edit">Edit</a> |
-				<form class="delete-form" action="/comments/${ comment.id }" method="post">
+				<a href="/comments/edit/${ comment.id }/edit">Edit</a> |
+				<form class="delete-form" action="/comments/delete/${ comment.id }" method="post">
 					<input type="hidden" name="_method" value="delete" />
 					<button>Delete</button>
 				</form>
