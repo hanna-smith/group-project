@@ -17,7 +17,7 @@ import com.goup.models.Comment;
 import com.group.services.CommentService;
 
 @Controller
-@RequestMapping("/review/{id}")
+@RequestMapping("/review/{id}/comments")
 public class CommentController {
 	@Autowired
 	private CommentService cServ;
@@ -71,7 +71,7 @@ public class CommentController {
 		return "commentview.jsp"; 
 	}
 	
-	@PostMapping("edit/{id}")
+	@PostMapping("/comment/edit/{id}")
 	public String update(@Valid @ModelAttribute("comment") Comment comment, BindingResult result, @PathVariable("id")Long id, HttpSession session, Model viewModel) {
 		if(result.hasErrors()) {
 			Long userId = (Long)session.getAttribute("user_id");
@@ -84,7 +84,7 @@ public class CommentController {
 		return "redirect:/"; 
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/comment/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		this.cServ.deleteComment(id);
 		return "redirect:/main";
