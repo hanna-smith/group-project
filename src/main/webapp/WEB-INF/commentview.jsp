@@ -37,14 +37,6 @@
 					<button>Delete</button>
 				</form>
 			</c:when>
-<%-- do we want user to be able to comment on their own comment? --%>
-<%-- 			<c:otherwise>
-				<c:choose>
-					<c:otherwise>
-						<a href="/comments/${ comment.id }/comment/create">Add Comment</a>								
-					</c:otherwise>	
-				</c:choose>
-			</c:otherwise> --%>
 		</c:choose>
 	</c:forEach>
 </div>
