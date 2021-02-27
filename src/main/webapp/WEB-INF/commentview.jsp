@@ -27,7 +27,7 @@
 	<h5>Review</h5>
 	<p>${business.review}</p>
 	<h6>Comments</h6>
-	<c:forEach items="${review.comment}" var="comment">
+	<c:forEach items="${review.comments}" var="comment">
 		<p>${comment}</p>
 	</c:forEach>
 </div>

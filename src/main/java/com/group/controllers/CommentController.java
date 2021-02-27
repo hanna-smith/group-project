@@ -24,6 +24,8 @@ public class CommentController {
 	
 	//Autowire for user
 	
+	//Autowire for business
+	
 	//Autowire for review
 	
 	@GetMapping("")
