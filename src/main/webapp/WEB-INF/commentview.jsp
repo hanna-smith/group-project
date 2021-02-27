@@ -26,6 +26,7 @@
 	<h3><a href="/business/${business.id}">${business.name}</a></h3>
 	<h5>Review</h5>
 	<p>${business.review}</p>
+	<p><a href="/new">Add Comment</a></p>
 	<h6>Comments</h6>
 	<c:forEach items="${reviewComments.comments}" var="comment">
 		<p>${comment}</p>
