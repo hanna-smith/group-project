@@ -1,11 +1,11 @@
-package com.group.Kudos.repositories;
+package com.group.Kudos.Repositories;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.group.Kudos.models.Business;
+import com.group.Kudos.Models.Business;
 
 @Repository
 public interface BusinessRepository extends CrudRepository<Business, Long> {
