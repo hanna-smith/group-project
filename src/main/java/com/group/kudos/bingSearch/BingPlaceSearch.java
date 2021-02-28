@@ -77,38 +77,38 @@ public class BingPlaceSearch {
         
         public BingPlaceSearch() {}
 
-        public static void main (String[] args) {
-            try {
-            	String searchTerm = "Restaurant";
-            	String searchLocation = "Bellevue";
-                System.out.println("Searching the Web for: " + searchTerm);
-
-                SearchResults result = search(searchTerm, searchLocation);
-                
-                JsonParser parser = new JsonParser();
-                JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
-                JsonObject placeJson = json.getAsJsonObject("places");
-                JsonArray places = placeJson.getAsJsonArray("value");
-               
-                for (int i = 0; i < places.size(); i++) {
-                	JsonObject place = (JsonObject)places.get(i);
-                	String name = place.get("name").getAsString();
-                	System.out.println(name);
-                	System.out.println(prettify(place.toString()));
-                }
-
-//                System.out.println("\nRelevant HTTP Headers:\n");
-//                for (String header : result.relevantHeaders.keySet())
-//                    System.out.println(header + ": " + result.relevantHeaders.get(header));
+//        public static void main (String[] args) {
+//            try {
+//            	String searchTerm = "Restaurant";
+//            	String searchLocation = "Bellevue";
+//                System.out.println("Searching the Web for: " + searchTerm);
 //
-//                System.out.println("\nJSON Response:\n");
-//                System.out.println(prettify(result.jsonResponse));
-            }
-            catch (Exception e) {
-                e.printStackTrace(System.out);
-                System.exit(1);
-            }
-        }
+//                SearchResults result = search(searchTerm, searchLocation);
+//                
+//                JsonParser parser = new JsonParser();
+//                JsonObject json = parser.parse(result.jsonResponse).getAsJsonObject();
+//                JsonObject placeJson = json.getAsJsonObject("places");
+//                JsonArray places = placeJson.getAsJsonArray("value");
+//               
+//                for (int i = 0; i < places.size(); i++) {
+//                	JsonObject place = (JsonObject)places.get(i);
+//                	String name = place.get("name").getAsString();
+//                	System.out.println(name);
+//                	System.out.println(prettify(place.toString()));
+//                }
+//
+////                System.out.println("\nRelevant HTTP Headers:\n");
+////                for (String header : result.relevantHeaders.keySet())
+////                    System.out.println(header + ": " + result.relevantHeaders.get(header));
+////
+////                System.out.println("\nJSON Response:\n");
+////                System.out.println(prettify(result.jsonResponse));
+//            }
+//            catch (Exception e) {
+//                e.printStackTrace(System.out);
+//                System.exit(1);
+//            }
+//        }
         
         public static SearchResults search(String searchTerm, String searchLocation) {
         	String fullSearch = searchTerm + " in " + searchLocation;
