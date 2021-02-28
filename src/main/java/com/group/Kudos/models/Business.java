@@ -1,4 +1,4 @@
-package com.group.Kudos.models;
+package com.group.Kudos.Models;
 
 import java.util.Date;
 

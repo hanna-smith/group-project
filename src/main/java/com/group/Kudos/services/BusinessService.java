@@ -1,4 +1,4 @@
-package com.group.Kudos.services;
+package com.group.Kudos.Services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.group.Kudos.Models.Business;
+import com.group.Kudos.Repositories.BusinessRepository;
 import com.group.Kudos.localSearch.BingPlaceSearch;
 import com.group.Kudos.localSearch.SearchResults;
-import com.group.Kudos.models.Business;
-import com.group.Kudos.repositories.BusinessRepository;
 
 @Service
 public class BusinessService {
