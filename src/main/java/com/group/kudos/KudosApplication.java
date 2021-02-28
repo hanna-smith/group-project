@@ -1,4 +1,4 @@
-package com.group.Kudos;
+package com.group.kudos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
