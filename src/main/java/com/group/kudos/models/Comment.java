@@ -28,7 +28,7 @@ public class Comment {
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
-	private Review commentCreator;
+	private User commentCreator;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="review_id")
@@ -77,11 +77,11 @@ public class Comment {
 		this.reviewComments = reviewComments;
 	}
 	
-	public Review getCommentCreator() {
+	public User getCommentCreator() {
 		return commentCreator;
 	}
 
-	public void setCommentCreator(Review commentCreator) {
+	public void setCommentCreator(User commentCreator) {
 		this.commentCreator = commentCreator;
 	}
 	

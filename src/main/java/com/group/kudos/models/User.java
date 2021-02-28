@@ -46,15 +46,10 @@ public class User {
 	        inverseJoinColumns = @JoinColumn(name = "role_id"))
 	
 	private List<Role> roles;
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-			name="users_reviews",
-			joinColumns = @JoinColumn(name="user_id"),
-			inverseJoinColumns = @JoinColumn(name="review_id")
-			)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="reviewer", cascade=CascadeType.ALL)
 	private List<Review> reviews; 
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="user", cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="commentCreator", cascade=CascadeType.ALL)
 	private List<Comment> comments; 
 	
 	public User() {
