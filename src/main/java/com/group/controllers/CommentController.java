@@ -28,6 +28,8 @@ public class CommentController {
 	
 	//Autowire for review
 	
+	//I commented out some parts to avoid the errors but we'll need to added it aging once we merge
+	
 	@GetMapping("")
 	public String reviewComments(HttpSession session, Model viewModel) {
 		Long userId = (Long)session.getAttribute("user_id");
