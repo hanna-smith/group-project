@@ -32,7 +32,7 @@
     		<input type="comment" class="form-control" placeholder="Type comments here" id="comment">
   		</div>
   		<button type="submit" class="btn btn-primary">Submit</button>
-  		</form>
+  	</form>
 	<h6>Comments</h6>
 	<c:forEach items="${reviewComments.comments}" var="comment">
 		<p>${comment}</p>
