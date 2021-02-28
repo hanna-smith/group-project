@@ -1,15 +1,14 @@
-package com.goup.models;
+package com.group.models;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -24,13 +23,13 @@ public class Comment {
 	private Date createdAt;
 	private Date updatedAt;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private Review commentCreator;
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="review_id")
-	private Review reviewComments;
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="user_id")
+//	private Review commentCreator;
+//
+//	@ManyToOne(fetch=FetchType.LAZY)
+//	@JoinColumn(name="review_id")
+//	private Review reviewComments;
 
 	public Comment() {
 	}
@@ -67,19 +66,28 @@ public class Comment {
 		this.updatedAt = updatedAt;
 	}
 
-	public Review getReviewComments() {
-		return reviewComments;
-	}
-
-	public void setReviewComments(Review reviewComments) {
-		this.reviewComments = reviewComments;
-	}
+//	public Review getReviewComments() {
+//		return reviewComments;
+//	}
+//
+//	public void setReviewComments(Review reviewComments) {
+//		this.reviewComments = reviewComments;
+//	}
+//	
+//	public Review getCommentCreator() {
+//		return commentCreator;
+//	}
+//
+//	public void setCommentCreator(Review commentCreator) {
+//		this.commentCreator = commentCreator;
+//	}
 	
-	public Review getCommentCreator() {
-		return commentCreator;
+	@PrePersist
+	protected void onCreate() {
+		this.createdAt = new Date();
 	}
-
-	public void setCommentCreator(Review commentCreator) {
-		this.commentCreator = commentCreator;
+	@PostPersist
+	protected void onUpdate() {
+		this.updatedAt = new Date();
 	}
 }

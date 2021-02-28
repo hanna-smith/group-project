@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.goup.models.Comment;
+import com.group.models.Comment;
 import com.group.services.CommentService;
 
 @Controller
@@ -63,11 +63,11 @@ public class CommentController {
 		if(userId == null) {
 			return "redirect:/"; 
 		}
-		if(comment == null || comment.getThisUser().getId().equals(userId)) {
-			return "redirect:/main"; 
-		}
+//		if(comment == null || comment.getThisUser().getId().equals(userId)) {
+//			return "redirect:/main"; 
+//		}
 		viewModel.addAttribute("comment", comment);
-		viewModel.addAttribute("user_id", userId);
+//		viewModel.addAttribute("user_id", userId);
 		return "commentview.jsp"; 
 	}
 	
