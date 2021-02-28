@@ -29,6 +29,8 @@ public class CommentController {
 	//Autowire for review
 	
 	//I commented out some parts to avoid the errors but we'll need to added it aging once we merge
+	// Test
+	
 	
 	@GetMapping("")
 	public String reviewComments(HttpSession session, Model viewModel) {
