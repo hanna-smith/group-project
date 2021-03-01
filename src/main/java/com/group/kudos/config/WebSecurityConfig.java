@@ -15,13 +15,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-       
+       @Autowired 
+	private UserDetailsService userDetailsService;
        @Autowired
        AuthenticationSuccessHandler successHandler;
 	    
-	    public WebSecurityConfig(UserDetailsService userDetailsService) {
-	        this.userDetailsService = userDetailsService;
-	    }
+	  
 	  @Bean
 	    public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	        return new BCryptPasswordEncoder();
