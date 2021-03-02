@@ -33,7 +33,7 @@ public class Review {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="business_id")
-	private Business busReviewed;
+	private Business business;
 	
 	@Column(updatable=false)  //have a date for when it was created, can't be updated
 	@DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss")
@@ -63,7 +63,7 @@ public class Review {
 		this.stars = stars;
 		this.title = title;
 		this.reviewer = reviewer;
-		this.busReviewed = busReviewed;
+		this.business = busReviewed;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -95,11 +95,11 @@ public class Review {
 	public void setReviewer(User reviewer) {
 		this.reviewer = reviewer;
 	}
-	public Business getBusReviewed() {
-		return busReviewed;
+	public Business getBusiness() {
+		return business;
 	}
-	public void setBusReviewed(Business busReviewed) {
-		this.busReviewed = busReviewed;
+	public void setBusiness(Business busReviewed) {
+		this.business = busReviewed;
 	}
 	public Date getCreatedAt() {
 		return createdAt;

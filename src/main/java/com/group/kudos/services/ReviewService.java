@@ -18,6 +18,10 @@ public class ReviewService {
 		this.rRepo.save(newReview);
 	}
 	
+	public Review findReviewById(Long id) {
+		return this.rRepo.findById(id).orElse(null);
+	}
+	
 			//delete a review
 	public void deleteReview(Long id) {
 		this.rRepo.deleteById(id);
