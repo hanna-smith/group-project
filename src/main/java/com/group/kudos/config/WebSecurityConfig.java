@@ -20,7 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
        @Autowired
        AuthenticationSuccessHandler successHandler;
 	    
-	  
 	  @Bean
 	    public BCryptPasswordEncoder bCryptPasswordEncoder() {
 	        return new BCryptPasswordEncoder();
@@ -30,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.
 	            authorizeRequests()
-	                .antMatchers("/static/**", "/").permitAll()
+	                .antMatchers("/static/**", "/","/registration").permitAll()
 	                .antMatchers("/business/**").access("hasRole('ROLE_BUSINESS')")   
 	                .anyRequest().authenticated()
 	                .and()

@@ -19,6 +19,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 
 
@@ -32,7 +33,9 @@ public class User {
 	private Long id; 
 	@Email
 	private String email; 
+	@Size(min=5, max=12)
 	private String username; 
+	@Size(min=8, max=15)
 	private String password; 
 	@Transient
 	private String confirmPassword; 
@@ -51,6 +54,9 @@ public class User {
 	
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="commentCreator", cascade=CascadeType.ALL)
 	private List<Comment> comments; 
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="owner", cascade=CascadeType.ALL)
+	private List<Business> businesses; 
 	
 	public User() {
 		

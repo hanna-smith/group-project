@@ -35,6 +35,7 @@ public class Comment {
 	private Review reviewComments;
 
 	public Comment() {
+		
 	}
 
 	public Long getId() {
