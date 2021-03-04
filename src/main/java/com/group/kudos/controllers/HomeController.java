@@ -16,12 +16,6 @@ public class HomeController {
 	@Autowired
 	private UserService uService; 
 	
-
-	@RequestMapping("/")
-	public String HomeScreen() {
-		return "home.jsp";
-	}
-	
 	@RequestMapping("/businessdashboard")
 	public String businessDashboard(HttpSession session, Model model) {
 		if(session.getAttribute("user_id").equals(null)) {
