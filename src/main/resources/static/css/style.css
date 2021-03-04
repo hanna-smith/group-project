@@ -15,10 +15,16 @@ body {
 }
 #home-search {
 	height: 90vh;
-	background-color: white;
 	width: 100%;
-	background-image: url(../img/header.jpg);
-	background-size: 100%;
+}
+#home-search img {
+	min-height: 100%;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 #home-search h1 {
 	color: #66FCF1;

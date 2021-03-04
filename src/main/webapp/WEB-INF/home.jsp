@@ -29,19 +29,28 @@
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
-			      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${USER.NAME}</a>
-			      	<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-			      		<li><a class="dropdown-item" href="/profile">My Profile</a></li>
-			      		<li><a class="dropdown-item" href="/logout">Log Out</a></li>
-			      		<li><a class="dropdown-item" href="/mybusiness">My Business</a></li> <!-- IF STATEMENT -->
-			      		<li><a class="dropdown-item" href="/myreviews">My Reviews</a></li>	 <!-- IF STATEMENT -->
-			      	</ul>
+			      	<c:choose>
+			      		<c:when test="${ user == null }">
+			      			<a href="/login">LOG IN</a>
+			      		</c:when>
+			      		<c:otherwise>
+					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${USER.NAME}</a>
+					      	<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					      		<li><a class="dropdown-item" href="/profile">My Profile</a></li>
+					      		<li><a class="dropdown-item" href="/logout">Log Out</a></li>
+					      		<li><a class="dropdown-item" href="/mybusiness">My Business</a></li> <!-- IF STATEMENT -->
+					      		<li><a class="dropdown-item" href="/myreviews">My Reviews</a></li>	 <!-- IF STATEMENT -->
+					      	</ul>
+				      	</c:otherwise>
+			      	</c:choose>
 			      </ul>
 			  </div>
 		    </div>
 		  </div>
 		</nav>
+		<!--  PAGE CONTENT -->
 		<div id="home-search">
+			<img src="/img/header.jpg">
 			<h1>KUDOS</h1>
 		</div>
 	</body>
