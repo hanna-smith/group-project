@@ -1,0 +1,47 @@
+nav {
+	background-color: #0B0C10;
+	color: #C5C6C7;
+}
+
+nav a {
+	text-decoration: none;
+	color: #C5C6C7;
+}
+nav a:hover {
+	color: #45A29E;
+}
+body {
+	background-color: #1F2833;
+}
+#home-search {
+	height: 90vh;
+	background-color: white;
+	width: 100%;
+	background-image: url(../img/header.jpg);
+	background-size: 100%;
+}
+#home-search h1 {
+	color: #66FCF1;
+	text-align: center;
+	padding-top: 10vh;
+	font-size: 120px;
+	font-family: 'Oswald', sans-serif;
+}
+.home-search, .home-search:focus {
+	background-color: #1F2833;
+	color: white;
+}
+.home-search::placeholder {
+	color: #45A29E;
+	opacity: 1;
+}
+.home-search.search-term {
+	width: 200%;
+}
+.search-btn {
+	background-color: #66FCF1;
+	color: black;
+}
+.search-btn:hover {
+	opacity: 50%;
+}
