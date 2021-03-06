@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.group.kudos.bingSearch.BingPlaceSearch;
@@ -28,6 +29,26 @@ public class BusinessService {
 		return repo.findAll();
 	}
 	
+	private String formatAddress(JsonObject address) {
+		String addressLocality = address.get("addressLocality").getAsString();
+		String addressRegion = address.get("addressRegion").getAsString();
+		String postalCode = address.get("postalCode").getAsString();
+		String addressCountry = address.get("addressCountry").getAsString();
+		String neighborhood = address.get("neighborhood").getAsString();
+		
+		String finalAddress = "";
+		
+		if (neighborhood.length() > 0) {
+			finalAddress += neighborhood + ", ";
+		}
+		finalAddress += addressLocality;
+		finalAddress += ", " + addressRegion;
+		finalAddress += "\n";
+		finalAddress += postalCode + ", " + addressCountry;
+		
+		return finalAddress;
+	}
+	
 	// Perform a bing Places search then convert places to Business objects. Pull Business
 	// objects from database when found.
 	public List<Business> bingSearch(String searchTerm, String searchLocation) {
@@ -39,12 +60,22 @@ public class BusinessService {
 		
 		for (int i = 0; i < places.size(); i++) {
 			JsonObject place = (JsonObject)places.get(i);
+//			System.out.println(place);
 			// Get all the individual attributes of the business
 			String name = place.get("name").getAsString();
-			String postalCode = place.get("address").getAsJsonObject().get("postalCode").getAsString();
-			String url = place.get("url").getAsString();
+			
+			JsonObject address = place.get("address").getAsJsonObject();
+			String fullAddress = this.formatAddress(address);
+			String postalCode = address.get("postalCode").getAsString();
+			
+			JsonElement urlObject = place.get("url");
+			String url = "";
+			if (urlObject != null) {
+				url = urlObject.getAsString();
+			}
 			String bingId = name + "|" + postalCode + "|" + url;
 			String type = place.get("_type").getAsString();
+			String telephone = place.get("telephone").getAsString();
 			
 			Business business = repo.findByBingId(bingId);
 			if (business == null) {
@@ -55,7 +86,13 @@ public class BusinessService {
 			business.setBingId(bingId);
 			business.setWebsiteUrl(url);
 			business.setType(type);
+			business.setAddress(fullAddress);
+			business.setTelephone(telephone);
 			
+			if (business.getId() != null) {
+				repo.save(business);
+			}
+						
 			businesses.add(business);
 		}
 		

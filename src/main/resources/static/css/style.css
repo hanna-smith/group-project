@@ -16,6 +16,7 @@ body {
 #home-search {
 	height: 90vh;
 	width: 100%;
+	text-align: center;
 }
 #home-search img {
 	min-height: 100%;
@@ -52,6 +53,13 @@ body {
 	opacity: 50%;
 }
 
+#search-bar {
+	padding: 20px 25%;
+}
+#search-bar input {
+	background: rgb(31, 40, 51, 0.5)
+=======
+
 .rating {
     display: flex;
     flex-direction: row-reverse;
@@ -87,4 +95,5 @@ body {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+
 }

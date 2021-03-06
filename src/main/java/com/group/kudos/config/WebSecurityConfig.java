@@ -29,10 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.
 	            authorizeRequests()
-	                .antMatchers("/static/**", "/","/registration", "/css/**", "/js/**", "/img/**", "/search/**").permitAll()
-	                .antMatchers("/business/**").access("hasRole('ROLE_BUSINESS')")   
+	                .antMatchers("/static/**", "/","/registration", "/css/**", "/js/**", "/img/**", "/search", "/business/**").permitAll()
+//	                .antMatchers("/business/**").access("hasRole('ROLE_BUSINESS')")   
 	                .anyRequest().authenticated()
 	                .and()
+	                .csrf().disable()
 	            .formLogin()
 	                .loginPage("/login")
 	                .loginProcessingUrl("/login")

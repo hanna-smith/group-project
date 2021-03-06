@@ -110,7 +110,7 @@ public class BingPlaceSearch {
 //            }
 //        }
         
-        public static SearchResults search(String searchTerm, String searchLocation) {
+        public SearchResults search(String searchTerm, String searchLocation) {
         	String fullSearch = searchTerm + " in " + searchLocation;
         	try {
         		return SearchLocal(fullSearch);

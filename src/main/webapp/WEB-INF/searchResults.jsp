@@ -21,11 +21,11 @@
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarText">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<%-- 		      	<form class="d-flex" method="GET" action="/search">
+		      	<form class="d-flex" method="GET" action="/search">
 		      		<input class="form-control me-2 home-search search-term" name="searchTerm" placeholder="Search Term">
 		      		<input class="form-control me-2 home-search" name="location" placeholder="Location">
 		      		<button class="btn search-btn" type="submit">Search</button>
-		      	</form> --%>
+		      	</form>
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
@@ -49,17 +49,47 @@
 		  </div>
 		</nav>
 		<!--  PAGE CONTENT -->
-		<div id="home-search">
-			<img src="/img/header.jpg">
-			<h1>KUDOS</h1>
-			<div id="search-bar">
-				<form class="d-flex" method="GET" action="/search">
-					<input class="form-control me-2 home-search search-term" name="searchTerm" placeholder="Search For...">
-					<h2 style="color: #66FCF1; margin-left: 0px; margin-right: 7px;">IN</h2>
-					<input class="form-control me-2 home-search" name="location" placeholder="Location">
-					<button class="btn search-btn" type="submit">Search</button>
-				</form>
+		<div style="padding: 50px;">
+			<h1 class="text-secondary">Searching for <span class="text-light">${ searchTerm }</span> in <span class="text-light">${ location }</span></h1>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<c:forEach items="${ businesses }" var="business">
+					<div class="col">
+						<div class="card text-light bg-dark mb-3">
+							<div class="card-header">
+								${ business.type }
+							</div>
+							<div class="card-body">
+								<h5 class="card-title">${ business.name }</h5>
+								<p class="card-text">${ business.address }</p>
+								<a class="card-link" href="tel://${ business.telephone }">${ business.telephone }</a>
+								<c:choose>
+									<c:when test="${ business.id != null }">
+										<a class="card-link" href="#">More Details</a>
+									</c:when>
+									<c:otherwise>
+										<form:form style="display: inline-block;" method="POST" action="/business/new" modelAttribute="business">
+											<form:input type="hidden" path="name" name="name" value="${ business.name }"/>
+											<form:input type="hidden" path="bingId" name="bingId" value="${ business.bingId }"/>
+											<form:input type="hidden" path="websiteUrl" name="websiteUrl" value="${ business.websiteUrl }"/>
+											<form:input type="hidden" path="type" name="type" value="${ business.type }"/>
+											<form:input type="hidden" path="address" name="address" value="${ business.address }"/>
+											<form:input type="hidden" path="telephone" name="telephone" value="${ business.telephone }"/>
+											<button class="btn btn-link card-link" type="submit">More Details</button>
+										</form:form>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div class="card-footer">
+								<a class="card-link" href="${ business.websiteUrl }">Go to website</a>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
+			
+			<c:forEach items="${ businesses }" var="business">
+				${ business.name } ${ business.bingId } ${ business.websiteUrl } ${ business.type }
+			</c:forEach>
 		</div>
 	</body>
 </html>
