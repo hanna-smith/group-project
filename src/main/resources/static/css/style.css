@@ -16,6 +16,7 @@ body {
 #home-search {
 	height: 90vh;
 	width: 100%;
+	text-align: center;
 }
 #home-search img {
 	min-height: 100%;
@@ -50,4 +51,10 @@ body {
 }
 .search-btn:hover {
 	opacity: 50%;
+}
+#search-bar {
+	padding: 20px 25%;
+}
+#search-bar input {
+	background: rgb(31, 40, 51, 0.5)
 }

@@ -21,11 +21,11 @@
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarText">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-		      	<form class="d-flex" method="GET" action="/search">
+<%-- 		      	<form class="d-flex" method="GET" action="/search">
 		      		<input class="form-control me-2 home-search search-term" name="searchTerm" placeholder="Search Term">
 		      		<input class="form-control me-2 home-search" name="location" placeholder="Location">
 		      		<button class="btn search-btn" type="submit">Search</button>
-		      	</form>
+		      	</form> --%>
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
@@ -52,6 +52,14 @@
 		<div id="home-search">
 			<img src="/img/header.jpg">
 			<h1>KUDOS</h1>
+			<div id="search-bar">
+				<form class="d-flex" method="GET" action="/search">
+					<input class="form-control me-2 home-search search-term" name="searchTerm" placeholder="Search For...">
+					<h2 style="color: #66FCF1; margin-left: 0px; margin-right: 7px;">IN</h2>
+					<input class="form-control me-2 home-search" name="location" placeholder="Location">
+					<button class="btn search-btn" type="submit">Search</button>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>
