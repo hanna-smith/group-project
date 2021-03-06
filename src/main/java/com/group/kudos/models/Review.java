@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,6 +28,10 @@ public class Review {
 	private int stars;
 	private String title;
 	
+	@Column
+	@Size(max = 1000)
+	private String content;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User reviewer;
@@ -38,17 +43,12 @@ public class Review {
 	@Column(updatable=false)  //have a date for when it was created, can't be updated
 	@DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss")
 	private Date createdAt;
-	@DateTimeFormat(pattern = "YYYY-MM-dd HH:mm:ss")
-	private Date updatedAt;
 	
 	@PrePersist	//creates before anything else touches the date
 	protected void onCreate() {
 		this.createdAt = new Date();
 	}
-	@PreUpdate	//updates before anything else touches the date
-	protected void onUpdate() {
-		this.updatedAt = new Date();
-	}
+
 	
 	
 			//Constructors
@@ -56,8 +56,7 @@ public class Review {
 	public Review() {
 		super();
 	}
-	public Review(Long id, int stars, String title, User reviewer, Business busReviewed, Date createdAt,
-			Date updatedAt) {
+	public Review(Long id, int stars, String title, User reviewer, Business busReviewed, Date createdAt) {
 		super();
 		this.id = id;
 		this.stars = stars;
@@ -65,7 +64,7 @@ public class Review {
 		this.reviewer = reviewer;
 		this.busReviewed = busReviewed;
 		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+
 	}
 	
 	
@@ -107,12 +106,14 @@ public class Review {
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	public Date getUpdatedAt() {
-		return updatedAt;
+
+
+
+	public void setBusReviewed(Object attribute) {
+		// TODO Auto-generated method stub
+		
 	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+
 	
 	
 	

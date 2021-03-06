@@ -1,5 +1,7 @@
 package com.group.kudos.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class ReviewService {
 			//delete a review
 	public void deleteReview(Long id) {
 		this.rRepo.deleteById(id);
+	}
+
+	public List<Review> getReviews() {
+		return this.rRepo.findAll();
 	}
 	
 
