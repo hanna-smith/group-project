@@ -29,10 +29,6 @@ public class Business {
 	
 	private String name;
 	
-	@Size(min=4, message="Username must be at least 4 characters.")
-	@Column(unique=true)
-	private String username;
-	
 	// Identifier to match to Bing Entity Search API results. Is a 
 	// concatenation of <name>|<postalCode>|<url>
 	@Column(columnDefinition="LONGTEXT")
@@ -45,10 +41,6 @@ public class Business {
 	@Column(unique=true)
 	private String email;
 	
-	private String password;
-	@Transient
-	private String passwordConfirmation;
-	
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -59,6 +51,11 @@ public class Business {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user_id")
 	private User owner;
+	
+	@Column(columnDefinition="LONGTEXT")
+	private String address;
+	
+	private String telephone;
 	
 	public Business() {}
 	
@@ -75,33 +72,12 @@ public class Business {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
+
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getPasswordConfirmation() {
-		return passwordConfirmation;
-	}
-	public void setPasswordConfirmation(String password) {
-		this.passwordConfirmation = password;
 	}
 	
 	public Date getCreatedAt() {
@@ -142,5 +118,19 @@ public class Business {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 }
