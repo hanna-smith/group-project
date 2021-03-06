@@ -49,9 +49,9 @@
 		  </div>
 		</nav>
 		<!--  PAGE CONTENT -->
-		<div id="home-search">
+<!-- 		<div id="home-search">
 			<img src="/img/header.jpg">
 			<h1>KUDOS</h1>
-		</div>
+		</div> -->
 	</body>
 </html>

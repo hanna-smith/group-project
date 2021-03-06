@@ -1,13 +1,10 @@
 package com.group.kudos.controllers;
 
-import java.util.LinkedHashMap;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchController {
@@ -17,9 +14,10 @@ public class SearchController {
 		return "home.jsp";
 	}
 	
-	@PostMapping("/search")
-	public String search(HttpSession session, @RequestBody LinkedHashMap<String, String> body) {
-		System.out.println(body);
+	@RequestMapping(value = "/search")
+	public String search(HttpSession session, @RequestParam("searchTerm") String searchTerm, @RequestParam("location") String location) {
+		System.out.println("SEARCHING");
+		System.out.println(searchTerm + " in " + location);
 		return "searchResults.jsp";
 	}
 }
