@@ -60,42 +60,49 @@
 		</nav>
 		<!--  PAGE CONTENT -->
 		<div style="padding: 50px;">
-			<h1 class="text-secondary">Searching for <span class="text-light">${ searchTerm }</span> in <span class="text-light">${ location }</span></h1>
-			<div class="row row-cols-1 row-cols-md-3 g-4">
-				<c:forEach items="${ businesses }" var="business">
-					<div class="col">
-						<div class="card text-light bg-dark mb-3">
-							<div class="card-header">
-								${ business.type }
+			<h1 style="margin-bottom: 15px;" class="text-secondary">Searching for <span class="text-light">${ searchTerm }</span> in <span class="text-light">${ location }</span></h1>
+			<c:choose>
+				<c:when test="${ businesses.size() == 0 }">
+					<h4 style="color: #E0E0E0;">There were no results... Please try another search...</h4>
+				</c:when>
+				<c:otherwise>
+					<div class="row row-cols-1 row-cols-md-3 g-4">
+						<c:forEach items="${ businesses }" var="business">
+							<div class="col">
+								<div class="card text-light bg-dark mb-3">
+									<div class="card-header">
+										${ business.type }
+									</div>
+									<div class="card-body">
+										<h5 class="card-title">${ business.name }</h5>
+										<p class="card-text">${ business.address }</p>
+										<a class="card-link" href="tel://${ business.telephone }">${ business.telephone }</a>
+										<c:choose>
+											<c:when test="${ business.id != null }">
+												<a class="card-link" href="#">More Details</a>
+											</c:when>
+											<c:otherwise>
+												<form:form style="display: inline-block;" method="POST" action="/business/new" modelAttribute="business">
+													<form:input type="hidden" path="name" name="name" value="${ business.name }"/>
+													<form:input type="hidden" path="bingId" name="bingId" value="${ business.bingId }"/>
+													<form:input type="hidden" path="websiteUrl" name="websiteUrl" value="${ business.websiteUrl }"/>
+													<form:input type="hidden" path="type" name="type" value="${ business.type }"/>
+													<form:input type="hidden" path="address" name="address" value="${ business.address }"/>
+													<form:input type="hidden" path="telephone" name="telephone" value="${ business.telephone }"/>
+													<button class="btn btn-link card-link" type="submit">More Details</button>
+												</form:form>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="card-footer">
+										<a class="card-link" href="${ business.websiteUrl }">Go to website</a>
+									</div>
+								</div>
 							</div>
-							<div class="card-body">
-								<h5 class="card-title">${ business.name }</h5>
-								<p class="card-text">${ business.address }</p>
-								<a class="card-link" href="tel://${ business.telephone }">${ business.telephone }</a>
-								<c:choose>
-									<c:when test="${ business.id != null }">
-										<a class="card-link" href="#">More Details</a>
-									</c:when>
-									<c:otherwise>
-										<form:form style="display: inline-block;" method="POST" action="/business/new" modelAttribute="business">
-											<form:input type="hidden" path="name" name="name" value="${ business.name }"/>
-											<form:input type="hidden" path="bingId" name="bingId" value="${ business.bingId }"/>
-											<form:input type="hidden" path="websiteUrl" name="websiteUrl" value="${ business.websiteUrl }"/>
-											<form:input type="hidden" path="type" name="type" value="${ business.type }"/>
-											<form:input type="hidden" path="address" name="address" value="${ business.address }"/>
-											<form:input type="hidden" path="telephone" name="telephone" value="${ business.telephone }"/>
-											<button class="btn btn-link card-link" type="submit">More Details</button>
-										</form:form>
-									</c:otherwise>
-								</c:choose>
-							</div>
-							<div class="card-footer">
-								<a class="card-link" href="${ business.websiteUrl }">Go to website</a>
-							</div>
-						</div>
+						</c:forEach>
 					</div>
-				</c:forEach>
-			</div>
+				</c:otherwise>
+			</c:choose>
 			
 			<c:forEach items="${ businesses }" var="business">
 				${ business.name } ${ business.bingId } ${ business.websiteUrl } ${ business.type }

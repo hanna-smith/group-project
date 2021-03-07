@@ -55,8 +55,11 @@ public class BusinessService {
 		SearchResults result = bingSearch.search(searchTerm, searchLocation);
 		JsonParser parser = new JsonParser();
 		JsonObject placeJson = parser.parse(result.jsonResponse).getAsJsonObject().getAsJsonObject("places");
-		JsonArray places = placeJson.getAsJsonArray("value");
 		List<Business> businesses = new ArrayList<Business>();
+		if (placeJson == null) {
+			return businesses;
+		}
+		JsonArray places = placeJson.getAsJsonArray("value");
 		
 		for (int i = 0; i < places.size(); i++) {
 			JsonObject place = (JsonObject)places.get(i);
