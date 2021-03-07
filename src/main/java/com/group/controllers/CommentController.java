@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.group.models.Comment;
 import com.group.services.CommentService;
+import com.group.services.ReviewService;
+import com.group.services.UserService;
 
 @Controller
 @RequestMapping("/review/{id}/comments")
@@ -22,14 +24,11 @@ public class CommentController {
 	@Autowired
 	private CommentService cServ;
 	
-	//Autowire for user
+	@Autowired
+	private UserService uServ;
 	
-	//Autowire for business
-	
-	//Autowire for review
-	
-	//I commented out some parts to avoid the errors but we'll need to added it aging once we merge
-	// Test
+	@Autowired
+	private ReviewService rServ;
 	
 	
 	@GetMapping("")
@@ -67,11 +66,11 @@ public class CommentController {
 		if(userId == null) {
 			return "redirect:/"; 
 		}
-//		if(comment == null || comment.getThisUser().getId().equals(userId)) {
-//			return "redirect:/main"; 
-//		}
+		if(comment == null || comment.getThisUser().getId().equals(userId)) {
+			return "redirect:/main"; 
+		}
 		viewModel.addAttribute("comment", comment);
-//		viewModel.addAttribute("user_id", userId);
+		viewModel.addAttribute("user_id", userId);
 		return "commentview.jsp"; 
 	}
 	

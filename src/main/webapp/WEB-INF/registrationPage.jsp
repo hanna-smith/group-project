@@ -1,15 +1,12 @@
-  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
     <meta charset="UTF-8">
-    <title>User Login</title>
+    <title>Register</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 	<link href="/css/style.css" rel="stylesheet">
@@ -33,22 +30,6 @@
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
-				     	<c:choose>
-			      		<c:when test="${user.id == null}">
-			      			<a href="/login">LOG IN</a>
-			      		</c:when>
-			      		<c:otherwise>
-					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
-					      	<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					      		<li><a class="dropdown-item" href="/login?logout">Log Out</a></li>
-					      		<sec:authorize url="/business/dashboard">
-								<li><a class="dropdown-item" href="/business/dashboard">My Business Page</a></li>
-							</sec:authorize>
-							<sec:authorize url="/userDashboard">
-								<li><a class="dropdown-item" href="/userDashboard">My Reviews</a></li>
-							</sec:authorize>
-=======
 			      	<c:choose>
 			      		<c:when test="${ user == null }">
 			      			<a href="/login">LOG IN</a>
@@ -60,7 +41,6 @@
 					      		<li><a class="dropdown-item" href="/logout">Log Out</a></li>
 					      		<li><a class="dropdown-item" href="/mybusiness">My Business</a></li> <!-- IF STATEMENT -->
 					      		<li><a class="dropdown-item" href="/myreviews">My Reviews</a></li>	 <!-- IF STATEMENT -->
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
 					      	</ul>
 				      	</c:otherwise>
 			      	</c:choose>
@@ -69,50 +49,69 @@
 		    </div>
 		  </div>
 		</nav>
-		<div id="home-search">
+    	<div id="home-search">
 			<img src="/img/header.jpg">
-			 <div class="container">
-			  <div class="row justify-content-center">
-			  <div class="col-3">
-<<<<<<< HEAD
-			
-=======
-				<c:if test="${logoutMessage != null}">
-			        <c:out value="${logoutMessage}"></c:out>
-			    </c:if>
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
-			    <h1>Login</h1>
-			    <c:if test="${errorMessage != null}">
-			        <c:out value="${errorMessage}"></c:out>
-			    </c:if>
-<<<<<<< HEAD
-			    	<c:if test="${logoutMessage != null}">
-			        <c:out value="${logoutMessage}"></c:out>
-			    </c:if>
-=======
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
-			    <br>
-				    <form method="POST" action="/login">
-				        <div>
-				            <input placeholder="Username" class="form-control home-search" type="text" id="username" name="username"/>
-				            <br>
-				            <input placeholder="Password" class="form-control home-search" type="password" id="password" name="password"/>
-				        </div>
-				        <br>
-				        <div class="row justify-content-center">
-				        	<div class="col-3">
-						        <input class="error" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						        <input class="btn search-btn"type="submit" value="Login"/>
-						   </div>
-				        </div>
-				    </form>
-				</div>
-			</div>
-		</div>
-		</div>
-	</body>
-<<<<<<< HEAD
+			<h1>Register</h1>
+		
+    
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input"checked>
+  <label class="custom-control-label" for="customRadioInline1">Register as Client</label>
+  </div>
+<div class="custom-control custom-radio custom-control-inline">
+  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+  <label class="custom-control-label" for="customRadioInline2">Register as Business</label>
+</div>
+
+    <form:form method="POST" action="/registration" modelAttribute="user">
+     <h3>Register as a Client</h3>
+        <div class="form-group">
+            <form:label path="username"/>Username:
+            <form:errors path="username"/>
+            <form:input path="username"/>
+        </div>
+          <div class="form-group">
+            <form:label path="email"/>Email:
+            <form:errors path="email"/>
+            <form:input path="email"/>
+        </div>
+        <div class="form-group">
+            <form:label path="password"/>Password:
+            <form:errors path="password"/>
+            <form:password path="password"/>
+        </div>
+        <div class="form-group">
+            <form:label path="confirmPassword"/>Password Confirmation:
+            <form:errors path="confirmPassword"/>
+            <form:password path="confirmPassword"/>
+        </div>
+        <input type="submit" value="Register as Client"/>
+    </form:form>
+    
+    <form:form method="POST" action="/businessRegistration" modelAttribute="user">
+        <h3>Register as a Business</h3>
+        <div class="form-group">
+            <form:label path="username"/>Username:
+            <form:errors path="username"/>
+            <form:input path="username"/>
+        </div>
+          <div class="form-group">
+            <form:label path="email"/>Email:
+            <form:errors path="email"/>
+            <form:input path="email"/>
+        </div>
+        <div class="form-group">
+            <form:label path="password"/>Password:
+            <form:errors path="password"/>
+            <form:password path="password"/>
+        </div>
+        <div class="form-group">
+            <form:label path="confirmPassword"/>Password Confirmation:
+            <form:errors path="confirmPassword"/>
+            <form:password path="confirmPassword"/>
+        </div>
+        <input type="submit" value="Register as Business"/>
+    </form:form>
+    </div>
+</body>
 </html>
-=======
-</html>
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
