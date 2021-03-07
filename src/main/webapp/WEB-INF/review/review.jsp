@@ -48,7 +48,6 @@
 	<h6>${business.type}</h6>
 	<h6>${business.websiteUrl}</h6>
 	<h5>Reviews</h5>
-	<p>${business.review}</p>
 	<form action="/new">
   		<div class="form-group">
     		<label for="review">Add Review:</label>
