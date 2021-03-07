@@ -32,7 +32,6 @@
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
-<<<<<<< HEAD
 				     	<c:choose>
 			      		<c:when test="${user.id == null}">
 			      			<a href="/login">LOG IN</a>
@@ -47,19 +46,6 @@
 							<sec:authorize url="/userDashboard">
 								<li><a class="dropdown-item" href="/userDashboard">My Reviews</a></li>
 							</sec:authorize>
-=======
-			      	<c:choose>
-			      		<c:when test="${ user == null }">
-			      			<a href="/login">LOG IN</a>
-			      		</c:when>
-			      		<c:otherwise>
-					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${USER.NAME}</a>
-					      	<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					      		<li><a class="dropdown-item" href="/profile">My Profile</a></li>
-					      		<li><a class="dropdown-item" href="/logout">Log Out</a></li>
-					      		<li><a class="dropdown-item" href="/mybusiness">My Business</a></li> <!-- IF STATEMENT -->
-					      		<li><a class="dropdown-item" href="/myreviews">My Reviews</a></li>	 <!-- IF STATEMENT -->
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
 					      	</ul>
 				      	</c:otherwise>
 			      	</c:choose>
@@ -73,23 +59,14 @@
 			 <div class="container">
 			  <div class="row justify-content-center">
 			  <div class="col-3">
-<<<<<<< HEAD
 			
-=======
-				<c:if test="${logoutMessage != null}">
-			        <c:out value="${logoutMessage}"></c:out>
-			    </c:if>
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
 			    <h1>Login</h1>
 			    <c:if test="${errorMessage != null}">
 			        <c:out value="${errorMessage}"></c:out>
 			    </c:if>
-<<<<<<< HEAD
 			    	<c:if test="${logoutMessage != null}">
 			        <c:out value="${logoutMessage}"></c:out>
 			    </c:if>
-=======
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
 			    <br>
 				    <form method="POST" action="/login">
 				        <div>
@@ -110,8 +87,4 @@
 		</div>
 		</div>
 	</body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> ef18aaaa81e7f6f3b9323130250de67d1f7d4502
