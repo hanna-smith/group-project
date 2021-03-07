@@ -82,6 +82,18 @@ public class Review {
 	public void setStars(int stars) {
 		this.stars = stars;
 	}
+	public String getContent() {
+		return content;
+	}
+
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+
 	public String getTitle() {
 		return title;
 	}

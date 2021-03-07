@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -62,6 +63,13 @@ import com.group.kudos.validators.UserValidator;
 		    	}
 		    return "login.jsp";
 			}
+		
+		
+		@GetMapping("/user/{id}")
+		public String showUser(@PathVariable("id") Long id, Model viewModel) {
+			viewModel.addAttribute("user", this.uService.findUserById(id));
+			return "/user/profile.jsp";
+		}
 		
 		
 		
