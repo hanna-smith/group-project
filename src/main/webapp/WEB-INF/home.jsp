@@ -34,6 +34,7 @@
 			      	<c:choose>
 			      		<c:when test="${pageContext.request.userPrincipal.name == null}">
 			      			<a href="/login">LOG IN</a>
+			      			<a style="margin-left: 10px;" href="/registration">REGISTER</a>
 			      		</c:when>
 			      		<c:otherwise>
 					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${pageContext.request.userPrincipal.name}</a>
