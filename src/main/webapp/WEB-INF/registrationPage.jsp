@@ -13,6 +13,12 @@
 	<link href="/css/login.css" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+	<script>
+		$(function() {
+			$('select').removeAttr('multiple');
+			});
+	</script>
 	</head>
     <body>
     	<nav class="navbar navbar-expand-lg">
@@ -59,36 +65,36 @@
 			<img src="/img/header.jpg">
 			<h1>Register</h1>
 		
-    
-    <form:form method="POST" action="/registration" modelAttribute="user">
-        <div class="form-group">
-        	<form:label path="roles"/>Register As:
+    <form:form style="width: 20%; margin: auto; margin-top: 30px;" method="POST" action="/registration" modelAttribute="user">
+        <div class="form-group row justify-content-center">
+        	<span style="color: #45A29E; margin-bottom: 5px;">Register As:</span>
         	<form:errors path="roles"/>
-        	<form:select path="roles">
+        	<form:select class="form-select home-search" path="roles">
         		<form:option value="1">Client</form:option>
         		<form:option value="2">Business</form:option>
         	</form:select>
         </div>
-        <div class="form-group">
-            <form:label path="username"/>Username:
+        <br>
+        <div class="form-group row justify-content-center">
             <form:errors path="username"/>
-            <form:input path="username"/>
+            <form:input placeholder="Username" class="form-control home-search" type="text" id="username" name="username" path="username"/>
         </div>
-          <div class="form-group">
-            <form:label path="email"/>Email:
+        <br>
+          <div class="form-group row justify-content-center">
             <form:errors path="email"/>
-            <form:input path="email"/>
+            <form:input placeholder="Email Address" class="form-control home-search" type="text" id="email" name="email" path="email"/>
         </div>
-        <div class="form-group">
-            <form:label path="password"/>Password:
+        <br>
+        <div class="form-group row justify-content-center">
             <form:errors path="password"/>
-            <form:password path="password"/>
+            <form:password placeholder="Password" class="form-control home-search" id="password" name="password" path="password"/>
         </div>
-        <div class="form-group">
-            <form:label path="confirmPassword"/>Password Confirmation:
+        <br>
+        <div class="form-group row justify-content-center">
             <form:errors path="confirmPassword"/>
-            <form:password path="confirmPassword"/>
+            <form:password placeholder="Confirm Password" class="form-control home-search" id="confirmPassword" name="confirmPassword" path="confirmPassword"/>
         </div>
+        <br>
         <input type="submit" value="Register"/>
     </form:form>
     </div>

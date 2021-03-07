@@ -35,6 +35,7 @@
 				     	<c:choose>
 			      		<c:when test="${user.id == null}">
 			      			<a href="/login">LOG IN</a>
+			      			<a style="margin-left: 10px;" href="/registration">REGISTER</a>
 			      		</c:when>
 			      		<c:otherwise>
 					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
