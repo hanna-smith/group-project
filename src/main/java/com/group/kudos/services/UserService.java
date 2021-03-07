@@ -41,7 +41,12 @@ public class UserService {
 	        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 	        user.setRoles(rRepo.findByName("ROLE_BUSINESS"));
 	        uRepo.save(user);
-	    }  
+	    }
+	    
+	    public void saveUser(User user) {
+	    	user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+	    	user = uRepo.save(user);
+	    }
 	    
 	    public User findByUsername(String username) {
 	        return uRepo.findUserByUsername(username);

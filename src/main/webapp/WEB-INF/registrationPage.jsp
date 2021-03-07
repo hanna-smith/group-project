@@ -54,17 +54,15 @@
 			<h1>Register</h1>
 		
     
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input"checked>
-  <label class="custom-control-label" for="customRadioInline1">Register as Client</label>
-  </div>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2">Register as Business</label>
-</div>
-
     <form:form method="POST" action="/registration" modelAttribute="user">
-     <h3>Register as a Client</h3>
+        <div class="form-group">
+        	<form:label path="roles"/>Register As:
+        	<form:errors path="roles"/>
+        	<form:select path="roles">
+        		<form:option value="1">Client</form:option>
+        		<form:option value="2">Business</form:option>
+        	</form:select>
+        </div>
         <div class="form-group">
             <form:label path="username"/>Username:
             <form:errors path="username"/>
@@ -85,32 +83,7 @@
             <form:errors path="confirmPassword"/>
             <form:password path="confirmPassword"/>
         </div>
-        <input type="submit" value="Register as Client"/>
-    </form:form>
-    
-    <form:form method="POST" action="/businessRegistration" modelAttribute="user">
-        <h3>Register as a Business</h3>
-        <div class="form-group">
-            <form:label path="username"/>Username:
-            <form:errors path="username"/>
-            <form:input path="username"/>
-        </div>
-          <div class="form-group">
-            <form:label path="email"/>Email:
-            <form:errors path="email"/>
-            <form:input path="email"/>
-        </div>
-        <div class="form-group">
-            <form:label path="password"/>Password:
-            <form:errors path="password"/>
-            <form:password path="password"/>
-        </div>
-        <div class="form-group">
-            <form:label path="confirmPassword"/>Password Confirmation:
-            <form:errors path="confirmPassword"/>
-            <form:password path="confirmPassword"/>
-        </div>
-        <input type="submit" value="Register as Business"/>
+        <input type="submit" value="Register"/>
     </form:form>
     </div>
 </body>

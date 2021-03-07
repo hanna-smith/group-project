@@ -32,25 +32,35 @@ import com.group.kudos.validators.UserValidator;
 		    return "registrationPage.jsp";
 		}
 		
+//		@PostMapping("/registration")
+//		public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+//		    uValidator.validate(user, result);
+//			if (result.hasErrors()) {
+//		        return "registrationPage.jsp";
+//		    }
+//		    this.uService.saveWithUserRole(user);
+//		    return "redirect:/login";
+//		}
+		
 		@PostMapping("/registration")
-		public String registration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
-		    uValidator.validate(user, result);
+		public String register(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+			uValidator.validate(user, result);
 			if (result.hasErrors()) {
-		        return "registrationPage.jsp";
-		    }
-		    this.uService.saveWithUserRole(user);
-		    return "redirect:/login";
+				return "registrationPage.jsp";
+			}
+			uService.saveUser(user);
+			return "redirect:/login";
 		}
 		
-		@PostMapping("/businessRegistration")
-		public String createBusinessUser(@Valid @ModelAttribute("user")User user, BindingResult result, Model model) {
-			 uValidator.validate(user, result);
-		        if (result.hasErrors()) {
-		            return "registrationPage.jsp";
-		        }
-		        uService.saveUserWithBusinessRole(user);
-		        return "redirect:/login";
-		}
+//		@PostMapping("/businessRegistration")
+//		public String createBusinessUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
+//			 uValidator.validate(user, result);
+//		        if (result.hasErrors()) {
+//		            return "registrationPage.jsp";
+//		        }
+//		        uService.saveUserWithBusinessRole(user);
+//		        return "redirect:/login";
+//		}
 		
 		@GetMapping("/login")
 		public String login(@RequestParam(value="error", required=false) String error, @RequestParam(value="logout", required=false) String logout, Model model) {

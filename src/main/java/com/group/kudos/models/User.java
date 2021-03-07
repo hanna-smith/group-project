@@ -33,9 +33,9 @@ public class User {
 	private Long id; 
 	@Email
 	private String email; 
-	@Size(min=5, max=12)
+	@Size(min=5)
 	private String username; 
-	@Size(min=8, max=15)
+	@Size(min=8)
 	private String password; 
 	@Transient
 	private String confirmPassword; 
