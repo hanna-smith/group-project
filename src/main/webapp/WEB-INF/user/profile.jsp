@@ -2,27 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="author" content="Jessica LaPlante">
-<title>KUDOS</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-	crossorigin="anonymous"></script>
-<link href="src/main/resources/static/css/style.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
-	rel="stylesheet">
-</head>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
+	<head>
+    <meta charset="UTF-8">
+    <title>KUDOS</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+	<link href="/css/style.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+	</head>
 
 <body>
 	
@@ -48,16 +39,19 @@
 				</ul>
 				<div class="dropdown">
 					<ul class="nav navbar-nav navbar-right">
-						<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${USER.NAME}</a>
+						<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${user.username}</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							<li><a class="dropdown-item" href="/profile">My Profile</a></li>
-							<li><a class="dropdown-item" href="/logout">Log Out</a></li>
-							<li><a class="dropdown-item" href="/mybusiness">My
-									Business</a></li>
-							<!-- IF STATEMENT -->
-							<li><a class="dropdown-item" href="/myreviews">My
-									Reviews</a></li>
-							<!-- IF STATEMENT -->
+							<li><a class="dropdown-item" href="/">Search</a></li>
+					      	 <form id="logoutForm" method="POST" action="/logout">
+						        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						        <input class="login dropdown-item" type="submit" value="Logout" />
+					      	</form>
+							<sec:authorize url="/business/dashboard">
+								<li><a class="dropdown-item" href="/business/dashboard">My Business Page</a></li>
+							</sec:authorize>
+							<sec:authorize url="/userDashboard">
+								<li><a class="dropdown-item" href="/userDashboard">My Reviews</a></li>
+							</sec:authorize>
 						</ul>
 					</ul>
 				</div>
@@ -65,15 +59,11 @@
 		</div>
 	</nav>		
 	<div id="home-search">
-		<h1>KUDOS</h1>
-	</div>
-	
-																			<!-- PAGE CONTENT -->
 
-	<h1>KUDOS Profile</h1>
+	<h1>Your KUDOS Profile</h1>
 	<div class="container">
 
-		<h2>${user.username}KUDOS Posted</h2>
+		<h2>${user.username}'s KUDOS Posted</h2>
 
 																			<!-- Display User Reviews -->
 
@@ -89,7 +79,7 @@
 			</thead>
 
 			<tbody>
-				<c:forEach items="${reviews}" var="review">												<!-- Collapsible table to conserve space -->
+				<c:forEach items="${user.reviews}" var="review">												<!-- Collapsible table to conserve space -->
 					<tr data-toggle="collapse" data-target="#accordion"	class="clickable">			<!-- Header row displays always  -->
 						<td>Business Name</td>																	<!-- First row of data displays, is clickable -->
 						<td>Kudos Title Here</td>																	<!-- Review content is hidden -->
@@ -111,6 +101,7 @@
 
 
 
+	</div>
 	</div>
 
 </body>

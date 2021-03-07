@@ -1,8 +1,8 @@
 package com.group.kudos.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +17,7 @@ import com.group.kudos.services.BusinessService;
 
 @Controller
 public class SearchController {
+ 
 	
 	private BusinessService bService;
 	
@@ -25,12 +26,12 @@ public class SearchController {
 	}
 	
 	@RequestMapping("/")
-	public String HomeScreen() {
-		return "home.jsp";
+	public String HomeScreen(Principal principal, Model model) {
+		return "home.jsp"; 
 	}
 	
 	@RequestMapping(value = "/search")
-	public String search(@ModelAttribute("business") Business business, HttpSession session, @RequestParam("searchTerm") String searchTerm, @RequestParam("location") String location, Model model) {
+	public String search(@ModelAttribute("business") Business business, Principal principal, @RequestParam("searchTerm") String searchTerm, @RequestParam("location") String location, Model model) {
 		List<Business> businesses = bService.bingSearch(searchTerm, location);
 		model.addAttribute("searchTerm", searchTerm);
 		model.addAttribute("location", location);
@@ -39,7 +40,8 @@ public class SearchController {
 	}
 	
 	@PostMapping("/business/new")
-	public String newBusiness(HttpSession session, @Valid @ModelAttribute("business") Business business) {
+	public String newBusiness(Principal principal, @Valid @ModelAttribute("business") Business business) {
+		
 		if (business.getId() == null) {
 			business = bService.addBusiness(business);
 		}

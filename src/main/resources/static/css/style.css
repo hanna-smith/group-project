@@ -63,7 +63,7 @@ body {
 .rating {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center
+    justify-content: center;
 }
 
 .rating>input {

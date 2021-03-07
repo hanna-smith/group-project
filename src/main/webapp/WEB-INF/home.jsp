@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html>
-<html lang="en">
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="en">
 	<head>
     <meta charset="UTF-8">
     <title>KUDOS</title>
@@ -26,20 +27,27 @@
 		      		<input class="form-control me-2 home-search" name="location" placeholder="Location">
 		      		<button class="btn search-btn" type="submit">Search</button>
 		      	</form> --%>
+		      	
 		      </ul>
 		      <div class="dropdown">
 			      <ul class="nav navbar-nav navbar-right">
 			      	<c:choose>
-			      		<c:when test="${ user == null }">
+			      		<c:when test="${pageContext.request.userPrincipal.name == null}">
 			      			<a href="/login">LOG IN</a>
 			      		</c:when>
 			      		<c:otherwise>
-					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${USER.NAME}</a>
+					      	<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">${pageContext.request.userPrincipal.name}</a>
 					      	<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					      		<li><a class="dropdown-item" href="/profile">My Profile</a></li>
-					      		<li><a class="dropdown-item" href="/logout">Log Out</a></li>
-					      		<li><a class="dropdown-item" href="/mybusiness">My Business</a></li> <!-- IF STATEMENT -->
-					      		<li><a class="dropdown-item" href="/myreviews">My Reviews</a></li>	 <!-- IF STATEMENT -->
+					      	 <form id="logoutForm" method="POST" action="/logout">
+						        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						        <input class="login dropdown-item" type="submit" value="Logout" />
+					      	</form>
+							<sec:authorize url="/business/dashboard">
+								<li><a class="dropdown-item" href="/business/dashboard">My Business Page</a></li>
+							</sec:authorize>
+							<sec:authorize url="/userDashboard">
+								<li><a class="dropdown-item" href="/userDashboard">My Reviews</a></li>
+							</sec:authorize>
 					      	</ul>
 				      	</c:otherwise>
 			      	</c:choose>
