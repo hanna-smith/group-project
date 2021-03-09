@@ -80,7 +80,7 @@
 										<a class="card-link" href="tel://${ business.telephone }">${ business.telephone }</a>
 										<c:choose>
 											<c:when test="${ business.id != null }">
-												<a class="card-link" href="#">More Details</a>
+												<a class="card-link" href="/busDetails/${business.id}">More Details</a>
 											</c:when>
 											<c:otherwise>
 												<form:form style="display: inline-block;" method="POST" action="/business/new" modelAttribute="business">
