@@ -40,7 +40,7 @@ public class ReviewController {
 	public String reviewComments(HttpSession session, Model viewModel) {
 		Long userId = (Long)session.getAttribute("user_id");
 		viewModel.addAttribute("user", this.uService.findUserById(userId));
-		viewModel.addAttribute("review", this.rService.findReviewById(reviewId));
+		viewModel.addAttribute("review", this.rService.getReviews());
 		
 		return "commentview.jsp";
 	}
@@ -69,7 +69,7 @@ public class ReviewController {
 	@GetMapping("/edit/{id}")
 	public String updateReview(@PathVariable("id") Long id, HttpSession session, Model viewModel) {
 		Long userId = (Long)session.getAttribute("user_id");
-		Review review = this.rService.findById(id);
+		Review review = this.rService.findReviewById(id);
 		if(userId == null) {
 			return "redirect:/"; 
 		}

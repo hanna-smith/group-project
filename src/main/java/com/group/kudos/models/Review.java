@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -111,6 +112,13 @@ public class Review {
 	public void setBusReviewed(Object attribute) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	public HttpSession getThisUser() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

@@ -33,5 +33,8 @@ public class ReviewService {
 		return this.rRepo.findAll();
 	}
 	
+	public Review updateReview(Review updatedReview) {
+		return this.rRepo.save(updatedReview);
+	}
 
 }
