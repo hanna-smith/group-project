@@ -51,6 +51,7 @@
 		<div id="home-search">
 			<img src="/img/header.jpg">
 			<h1>${user.username}'s Business Account</h1>
+
 			<div id="search-bar">
 				<form class="d-flex" method="GET" action="/search">
 					<input class="form-control me-2 home-search search-term" name="searchTerm" placeholder="Search and claim your business">
@@ -59,6 +60,36 @@
 					<button class="btn search-btn" type="submit">Search</button>
 				</form>
 			</div>
+		<div class="businesses" style="color:white">
+			<c:forEach items="${user.businesses}" var="business">
+				<h2>${business.name}</h2>
+				<h3>${business.address}</h3>
+						<table class="table">
+							<thead class="table-dark">
+								<tr>
+									<th>Title</th>
+									<th>Stars</th>
+									<th>Kudos</th>
+									<th>Date Posted</th>
+								</tr>
+							</thead>
+				<c:forEach items="${business.reviews}" var="review">
+							<tbody>											
+									<tr>																
+										<td>${review.title}</td>																	
+										<td><strong>${review.stars} stars</strong></td>						
+										<td>${review.createdAt}</td>
+										<td>${review.content}</td>
+									</tr>
+							</tbody>
+				</c:forEach>
+						</table>
+				
+					
+			</c:forEach>
+			</div>
+			
 		</div>
 	</body>
+
 </html>
