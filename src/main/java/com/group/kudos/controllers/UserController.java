@@ -73,7 +73,19 @@ import com.group.kudos.validators.UserValidator;
 		    return "login.jsp";
 			}
 		
+		@GetMapping("/business/dashboard")
+		public String bDashboard(Principal principal, Model model) {
+			String username = principal.getName();
+			model.addAttribute("user", this.uService.findByUsername(username));
+			return "businessDashboard.jsp"; 
+		}
 		
+		@GetMapping("/userDashboard")
+		public String uDashboard(Principal principal, Model model) {
+			String username = principal.getName();
+			model.addAttribute("user", this.uService.findByUsername(username));
+			return "profile.jsp"; 
+		}
 		
 		}
 		
