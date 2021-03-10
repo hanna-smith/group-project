@@ -36,5 +36,9 @@ public class ReviewService {
 	public Review updateReview(Review updatedReview) {
 		return this.rRepo.save(updatedReview);
 	}
+	
+	public List<Review> findByBusinessId(Long id){
+		return this.rRepo.findReviewsByBusinessId(id);
+	}
 
 }
