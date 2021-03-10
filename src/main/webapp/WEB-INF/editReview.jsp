@@ -61,30 +61,26 @@
 	</nav>		
 	<div id="home-search">
 
-	<h1>Your KUDOS Profile</h1>
+	<h1>Edit ${ review.title }</h1>
 	<div class="container">
-		<h3>${user.username}'s KUDOS Posted</h3>
-		<table class="table table-dark">
-			<thead class="table-dark">
-				<tr>
-					<th>Business</th>
-					<th>Title</th>
-					<th>Stars</th>
-					<th>Date Posted</th>
-					<th>Edit</th>
-			</thead>
-			<tbody>
-				<c:forEach items="${user.reviews}" var="review">												<!-- Collapsible table to conserve space -->
-					<tr data-toggle="collapse" data-target="#accordion"	class="clickable">			<!-- Header row displays always  -->
-						<td><a class="link-light" href="/busDetails/${ review.business.id }">${ review.business.name }</a></td>																	<!-- First row of data displays, is clickable -->
-						<td>${ review.title }</td>																	<!-- Review content is hidden -->
-						<td class="mt-5"><c:choose><c:when test="${ review.stars <= 4 }">⭐⭐⭐⭐</c:when><c:otherwise>⭐⭐⭐⭐⭐</c:otherwise></c:choose></td>						<!-- Picture data is hidden -->
-						<td><fmt:formatDate value="${ review.createdAt }" pattern="MMM dd, yyyy"/></td>
-						<td><a class="link-secondary" href="/review/${ review.id }/edit">Edit</a> <a class="link-secondary" href="/delete/${ review.id }">Delete</a>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<form:form method="POST" action="/review/${ review.id }/edit" modelAttribute="review">
+			<div class="form-group mb-3">
+				<form:errors path="title"/>
+				<form:input class="form-control home-search" placeholder="Title your review" path="title"/>
+			</div>
+			<div class="form-group mb-3">
+				<form:errors path="stars"/>
+				<form:select class="form-select home-search" path="stars">
+					<option value="4">⭐⭐⭐⭐</option>
+					<option value="5">⭐⭐⭐⭐⭐</option>
+				</form:select>
+			</div>
+			<div class="form-group mb-3">
+				<form:errors path="content"/>
+				<form:textarea path="content" class="form-control home-search" rows="6" placeholder="Tell us about your experience"></form:textarea>
+			</div>
+			<button type="submit" class="btn search-btn">Submit</button>
+		</form:form>
 	</div>
 	</div>
 </body>

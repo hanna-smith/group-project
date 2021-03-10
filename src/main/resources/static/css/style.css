@@ -97,3 +97,9 @@ body {
     opacity: 0.4
 
 }
+h3 {
+	color: #D8D8D8
+}
+.bg-dark {
+	background-color: rgba(52,58,64, 0.9)!important;
+}

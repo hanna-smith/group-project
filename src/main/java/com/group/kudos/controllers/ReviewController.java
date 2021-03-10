@@ -37,7 +37,6 @@ public class ReviewController {
 	public String businessPage(@PathVariable("id")Long id, @ModelAttribute("business")Business business,@ModelAttribute("user")User user, @ModelAttribute("review")Review review, Model model) {
 		model.addAttribute("business", bService.getBusiness(id));
 		List<Review> allReviews = this.rService.findByBusinessId(id);
-		System.out.println(allReviews);
 		model.addAttribute("reviews", allReviews);
 		model.addAttribute("user", user);
 		return "review/review.jsp"; 
@@ -60,15 +59,13 @@ public class ReviewController {
 		return "redirect:/busDetails/" + id;
 	}
 	
-	@PostMapping("/busDetails/{id}/claimBusiness")
+	@GetMapping("/busDetails/{id}/claimBusiness")
 	public String claimBusiness(Principal user, @PathVariable("id")Long id, Model model) {
 		Business business = this.bService.getBusiness(id);
-		model.addAttribute("business", business);
 		String username = user.getName();
-		model.addAttribute("user", uService.findByUsername(username));
 		business.setOwner(uService.findByUsername(username));
 		this.bService.updateBusiness(business);
-		return "redirect:/business/dashboard"; 
+		return "redirect:/business/dashboard";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -76,4 +73,21 @@ public class ReviewController {
 		this.rService.deleteReview(id);
 		return "redirect:/userDashboard";
 		}
+	
+	@GetMapping("/review/{id}/edit")
+	public String editReview(@PathVariable("id") Long id, Model model) {
+		Review review = rService.findReviewById(id);
+		model.addAttribute("review", review);
+		return "editReview.jsp";
+	}
+	
+	@PostMapping("/review/{id}/edit")
+	public String updateReview(@PathVariable("id") Long id, Model model, @ModelAttribute Review review) {
+		Review currentReview = rService.findReviewById(id);
+		currentReview.setStars(review.getStars());
+		currentReview.setTitle(review.getTitle());
+		currentReview.setContent(review.getContent());
+		rService.updateReview(currentReview);
+		return "redirect:/userDashboard";
+	}
 }

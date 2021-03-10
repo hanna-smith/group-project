@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -62,14 +64,14 @@
 			</div>
 		<div class="businesses" style="color:white">
 			<c:forEach items="${user.businesses}" var="business">
-				<h2>${business.name}</h2>
+				<h2><a style="text-decoration: none;" class="link-light" href="/busDetails/${ business.id}">${business.name}</a></h2>
 				<h3>${business.address}</h3>
-						<table class="table">
-							<thead class="table-dark">
+						<table class="table table-dark" style="width: 70%; margin:auto; opacity:90%">
+							<thead>
 								<tr>
 									<th>Title</th>
 									<th>Stars</th>
-									<th>Kudos</th>
+									<th>Posted By</th>
 									<th>Date Posted</th>
 								</tr>
 							</thead>
@@ -77,9 +79,9 @@
 							<tbody>											
 									<tr>																
 										<td>${review.title}</td>																	
-										<td><strong>${review.stars} stars</strong></td>						
-										<td>${review.createdAt}</td>
-										<td>${review.content}</td>
+										<td class="mt-5"><c:choose><c:when test="${ review.stars <= 4 }">⭐⭐⭐⭐</c:when><c:otherwise>⭐⭐⭐⭐⭐</c:otherwise></c:choose></td>	
+										<td>${ review.reviewer.username }</td>				
+										<td><fmt:formatDate value="${ review.createdAt }" pattern="MMM dd, yyyy"/></td>
 									</tr>
 							</tbody>
 				</c:forEach>

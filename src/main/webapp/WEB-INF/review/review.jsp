@@ -61,34 +61,42 @@
 		</nav>
 	<div id="home-search">
 			<img src="/img/header.jpg">
-		<h1>${business.name}</h1>
-		<h3>${business.type}</h3>
-		<h6><a href="${business.websiteUrl}">${business.websiteUrl}</a></h6>
-		
-	<sec:authorize url="/userDashboard">
-	<form:form method="POST" action="/busDetails/${business.id}/newReview"  modelAttribute="review">
-	<h5>Leave a Review</h5>
-		<form:hidden value="${business.id}" path="business"/>
-		<form:hidden value="${user.id}" path="reviewer"/>
-  		<div class="form-group">
-  			<form:label path="title"/>  
-  			<form:errors path="title"/>
-  			<form:input placeholder="Title your review" path="title"/>
-  		</div>
-  		<div class="form-group">
-  			<form:label path="stars"/>
-  			<form:errors path="stars"/>
-  			<form:input path="stars"/>
-  		</div>
-  		<div class="form-group">
-  			<form:label path="content"/> Review: 
-  			<form:errors path="content"/>
-  			<form:input path="content"/>
-  		</div>
-  		<button type="submit" class="btn search-btn">Submit</button>
-  	</form:form>
-  	</sec:authorize>
-  	<div class="row row-cols-1 row-cols-md-3 g-4">
+		<h1 style="font-size: 100px">${business.name}</h1>
+		<div>
+			<h3>${ business.type }</h3>
+			<p class="text-light">${ business.address }</p>
+			<a class="link-light" href="tel:/${ business.telephone }">${ business.telephone }</a>
+			<c:if test="${ business.websiteUrl.length() > 0 }"><a class="link-light" href="${ business.websiteUrl }">Go to website</a></c:if>
+		</div>
+		<sec:authorize url="/business/">
+			<c:if test="${ business.owner == null }"><a href="/busDetails/${ business.id }/claimBusiness" class="btn search-btn" style="margin-top: 20px; opacity: 75%;" role="button">Claim This Business</a></c:if>
+		</sec:authorize>
+		<sec:authorize url="/userDashboard">
+		<c:choose><c:when test="${ pageContext.request.userPrincipal.name == null }"><a href="/login" class="btn search-btn" style="margin-top: 20px; opacity: 75%" role="button">Log in to leave a review!</a></c:when><c:otherwise><a href="#newReview" data-bs-toggle="collapse" class="btn search-btn" style="margin-top: 20px; opacity: 75%" role="button" aria-expanded="false" aria-controls="newReview">Write a Review!</a></c:otherwise></c:choose>
+			<div class="card text-light mb-6 collapse" style="width: 40%; margin: auto; background-color: rgba(255, 255, 255, 0.2);" id="newReview">
+				<form:form method="POST" action="/busDetails/${ business.id }/newReview" modelAttribute="review">
+					<form:hidden value="${ business.id }" path="business"/>
+					<form:hidden value="${ user.id }" path="reviewer"/>
+					<div class="form-group mb-3">
+						<form:errors path="title"/>
+						<form:input class="form-control home-search" placeholder="Title your review" path="title"/>
+					</div>
+					<div class="form-group mb-3">
+						<form:errors path="stars"/>
+						<form:select class="form-select home-search" path="stars">
+							<option value="4">⭐⭐⭐⭐</option>
+							<option value="5">⭐⭐⭐⭐⭐</option>
+						</form:select>
+					</div>
+					<div class="form-group mb-3">
+						<form:errors path="content"/>
+						<form:textarea path="content" class="form-control home-search" rows="6" placeholder="Tell us about your experience"></form:textarea>
+					</div>
+					<button type="submit" class="btn search-btn">Submit</button>
+				</form:form>
+			</div>
+		</sec:authorize>	
+  	<div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top: 20px;">
 	 <c:forEach items="${reviews}" var="review">
 	 <div class="col">
 	 	<div class="card text-light bg-dark mb-3">
@@ -98,7 +106,7 @@
 	 		<div class="card-body">
 	 			<h5 class="card-title">${review.title}</h5>
 	 			<p class="card-text">${review.content}</p>
-	 			<h6>${review.stars} Stars</h6>
+	 			<h6><c:choose><c:when test="${ review.stars <= 4 }">⭐⭐⭐⭐</c:when><c:otherwise>⭐⭐⭐⭐⭐</c:otherwise></c:choose></h6>
 	 		</div>
 	 	</div>
 	 </div>
