@@ -56,6 +56,17 @@ public class ReviewController {
 		return "redirect:/busDetails/" + id;
 	}
 	
+	@PostMapping("/busDetails/{id}/claimBusiness")
+	public String claimBusiness(Principal user, @PathVariable("id")Long id, Model model) {
+		Business business = this.bService.getBusiness(id);
+		model.addAttribute("business", business);
+		String username = user.getName();
+		model.addAttribute("user", uService.findByUsername(username));
+		business.setOwner(uService.findByUsername(username));
+		this.bService.updateBusiness(business);
+		return "redirect:/business/dashboard"; 
+	}
+	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		this.rService.deleteReview(id);
