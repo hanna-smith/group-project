@@ -1,5 +1,7 @@
 package com.group.kudos.controllers;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +86,7 @@ import com.group.kudos.validators.UserValidator;
 		public String uDashboard(Principal principal, Model model) {
 			String username = principal.getName();
 			model.addAttribute("user", this.uService.findByUsername(username));
-			return "profile.jsp"; 
+			return "user/profile.jsp"; 
 		}
 		
 		}

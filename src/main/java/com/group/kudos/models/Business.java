@@ -131,4 +131,11 @@ public class Business {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	
+	public User getOwner() {
+		return owner;
+	}
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 }

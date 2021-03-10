@@ -45,6 +45,6 @@ public class SearchController {
 		if (business.getId() == null) {
 			business = bService.addBusiness(business);
 		}
-		return "redirect:/business/" + business.getId().toString();
+		return "redirect:/busDetails/" + business.getId().toString();
 	}
 }

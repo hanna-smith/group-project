@@ -11,5 +11,6 @@ import com.group.kudos.models.Review;
 public interface ReviewRepository extends CrudRepository<Review, Long>{
 
 	List<Review> findAll();
+	List<Review> findReviewsByBusinessId(Long id);
 
 }

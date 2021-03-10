@@ -34,9 +34,10 @@ public class ReviewController {
 	
 
 	@GetMapping("/busDetails/{id}")
-	public String businessPage(@PathVariable("id")Long id, @ModelAttribute("business")Business business,@ModelAttribute User user, @ModelAttribute("review")Review review, Model model) {
+	public String businessPage(@PathVariable("id")Long id, @ModelAttribute("business")Business business,@ModelAttribute("user")User user, @ModelAttribute("review")Review review, Model model) {
 		model.addAttribute("business", bService.getBusiness(id));
 		List<Review> allReviews = this.rService.findByBusinessId(id);
+		System.out.println(allReviews);
 		model.addAttribute("reviews", allReviews);
 		model.addAttribute("user", user);
 		return "review/review.jsp"; 
@@ -52,6 +53,9 @@ public class ReviewController {
 			model.addAttribute("user", uService.findByUsername(username));
 			return "review/review.jsp"; 
 		}
+		String username = user.getName();
+		review.setReviewer(uService.findByUsername(username));
+		review.setId(null);
 		this.rService.createReview(review);
 		return "redirect:/busDetails/" + id;
 	}
